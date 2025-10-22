@@ -1,7 +1,33 @@
 @custom-variant dark (&:is(.dark *));
 
+/**
+ * Responsive breakpoints personalizados para Tailwind v4
+ * - xs: 320px - 479px (Mobile pequeño)
+ * - sm: 480px - 639px (Mobile grande)
+ * - md: 640px - 767px (Mobile landscape / Tablet pequeña)
+ * - tablet: 768px - 1023px (Tablets)
+ * - lg: 1024px - 1279px (Laptops pequeñas)
+ * - xl: 1280px - 1439px (Laptops grandes)
+ * - 2xl: 1440px+ (Desktops / Monitores grandes)
+ */
+@custom-media --xs (min-width: 320px);
+@custom-media --mobile-lg (min-width: 480px);
+@custom-media --tablet (min-width: 768px);
+@custom-media --laptop (min-width: 1024px);
+@custom-media --desktop (min-width: 1440px);
+
 :root {
-  --font-size: 16px;
+  /* Responsive font sizes */
+  --font-size: 14px;
+  --font-size-mobile-lg: 15px;
+  --font-size-tablet: 16px;
+  --font-size-laptop: 16px;
+  --font-size-desktop: 18px;
+  
+  /* Responsive spacing scale */
+  --spacing-base: 1rem;
+  --spacing-section: 3rem;
+  --container-padding: 1rem;
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
@@ -186,4 +212,127 @@
 
 html {
   font-size: var(--font-size);
+}
+
+/* Responsive font scaling */
+@media (min-width: 480px) {
+  html {
+    font-size: var(--font-size-mobile-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: var(--font-size-tablet);
+  }
+  :root {
+    --spacing-section: 4rem;
+    --container-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: var(--font-size-laptop);
+  }
+  :root {
+    --spacing-section: 5rem;
+    --container-padding: 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: var(--font-size-desktop);
+  }
+  :root {
+    --spacing-section: 6rem;
+    --container-padding: 2rem;
+  }
+}
+
+/* Utility classes for responsive containers */
+@layer utilities {
+  .container-responsive {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+  }
+  
+  .container-responsive-sm {
+    max-width: 640px;
+  }
+  
+  .container-responsive-md {
+    max-width: 768px;
+  }
+  
+  .container-responsive-lg {
+    max-width: 1024px;
+  }
+  
+  .container-responsive-xl {
+    max-width: 1280px;
+  }
+  
+  .container-responsive-2xl {
+    max-width: 1536px;
+  }
+  
+  /* Responsive text sizing */
+  .text-responsive-sm {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+  
+  .text-responsive-base {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+  }
+  
+  .text-responsive-lg {
+    font-size: clamp(1.125rem, 3vw, 1.25rem);
+  }
+  
+  .text-responsive-xl {
+    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  }
+  
+  .text-responsive-2xl {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+  
+  .text-responsive-3xl {
+    font-size: clamp(1.875rem, 5vw, 2.5rem);
+  }
+  
+  .text-responsive-4xl {
+    font-size: clamp(2.25rem, 6vw, 3rem);
+  }
+  
+  /* Responsive grid gaps */
+  .gap-responsive {
+    gap: clamp(1rem, 2vw, 2rem);
+  }
+  
+  .gap-responsive-sm {
+    gap: clamp(0.5rem, 1vw, 1rem);
+  }
+  
+  /* Safe area for mobile notches */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
 }

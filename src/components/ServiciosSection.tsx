@@ -70,26 +70,26 @@ export default function ServiciosSection() {
   }, []);
 
   return (
-    <section id="servicios" className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="servicios" className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
         >
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <h2 className="text-slate-900">Nuestros Servicios</h2>
-            <Sparkles className="w-8 h-8 text-yellow-400" />
+          <div className="flex items-center justify-center space-x-2 mb-3 sm:mb-4">
+            <h2 className="text-slate-900 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Nuestros Servicios</h2>
+            <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-yellow-400 flex-shrink-0" />
           </div>
-          <div className="w-24 h-1 bg-yellow-400 mx-auto mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <div className="w-16 sm:w-20 md:w-24 h-1 bg-yellow-400 mx-auto mb-4 sm:mb-5 md:mb-6"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">
             Ofrecemos soluciones de transporte adaptadas a cada necesidad, 
             con tecnología de punta y atención personalizada.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -100,28 +100,28 @@ export default function ServiciosSection() {
               whileHover={{ y: -10, scale: 1.02 }}
               className="bg-white rounded-xl shadow-lg overflow-hidden group cursor-pointer"
             >
-              <div className={`h-2 bg-gradient-to-r ${service.color}`}></div>
+              <div className={`h-1.5 sm:h-2 bg-gradient-to-r ${service.color}`}></div>
               
-              <div className="p-6">
-                <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                  <service.icon className="w-8 h-8 text-white" />
+              <div className="p-4 sm:p-5 md:p-6">
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${service.color} rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform`}>
+                  <service.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                 </div>
                 
-                <h4 className="text-slate-900 mb-3">{service.name}</h4>
+                <h4 className="text-slate-900 mb-2 sm:mb-3 text-base sm:text-lg md:text-xl">{service.name}</h4>
                 
                 {loading ? (
-                  <div className="flex items-center space-x-2 text-gray-400 text-sm">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Generando descripción AI...</span>
+                  <div className="flex items-center space-x-2 text-gray-400 text-xs sm:text-sm">
+                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 animate-spin" />
+                    <span>Generando AI...</span>
                   </div>
                 ) : (
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">
                     {descriptions[service.id]}
                   </p>
                 )}
               </div>
 
-              <div className={`h-1 bg-gradient-to-r ${service.color} transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left`}></div>
+              <div className={`h-0.5 sm:h-1 bg-gradient-to-r ${service.color} transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left`}></div>
             </motion.div>
           ))}
         </div>
@@ -131,11 +131,11 @@ export default function ServiciosSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-8 text-center"
+          className="mt-6 sm:mt-8 text-center"
         >
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 px-4 py-2 rounded-full">
-            <Sparkles className="w-4 h-4 text-purple-600" />
-            <span className="text-sm text-purple-700">Descripciones generadas con IA Gemini</span>
+          <div className="inline-flex items-center space-x-1.5 sm:space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-purple-600 flex-shrink-0" />
+            <span className="text-xs sm:text-sm text-purple-700">Descripciones generadas con IA Gemini</span>
           </div>
         </motion.div>
       </div>
